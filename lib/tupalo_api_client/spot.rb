@@ -17,5 +17,7 @@ class Spot < APISmith::Smash
   property :longitude, :transformer => :to_f
   property :image_thumbnail_url
 
+  property :reviews, :transformer => lambda { |review| review.map { |r| Review.call(r) }.flatten }
+
 end
 
