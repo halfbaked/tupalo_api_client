@@ -1,6 +1,7 @@
 require 'api_smith'
 require 'uri'
 require 'tupalo_api_client/spot'
+require 'tupalo_api_client/review'
 
 class TupaloAPIClient
   include APISmith::Client
@@ -20,8 +21,21 @@ class TupaloAPIClient
     get("spots/#{parameterize(opts)}", :transform => Spot)
   end
 
-  def match(opts={})
+  def spot_details(opts={})
+    get("spot/#{parameterize(opts)}", :transform => Spot)
   end
+
+  #token only
+  def review_widget(opts={})
+    get("review_widget/#{parameterize(opts)}", :transform => ReviewWidget)
+  end
+
+  #token only
+  def match(opts={})
+    #get("review_widget/#{parameterize(opts)}", :transform => ReviewWidget)
+  end
+
+
 
   private
 
