@@ -1,3 +1,5 @@
+require 'api_smith'
+
 class TupaloAPIClient
   LANGUAGE = 'en'
 
