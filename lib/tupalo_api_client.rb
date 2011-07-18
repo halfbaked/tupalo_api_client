@@ -3,10 +3,13 @@ require 'uri'
 require 'tupalo_api_client/spot'
 require 'tupalo_api_client/review'
 require 'tupalo_api_client/review_widget'
+require 'tupalo_api_client/errors'
 
+class TupaloApiClient
 
-class TupaloAPIClient
   include APISmith::Client
+  include TupaloApiErrors
+
   base_uri 'http://tupalo.com/'
 
   def initialize(opts = {})
@@ -42,6 +45,15 @@ class TupaloAPIClient
 
   def parameterize(params)
     "?#{URI.escape(params.map{|k,v| "#{k}=#{v}"}.join('&'))}"
+  end
+
+  def check_response_errors(response)
+
+    if response.code.to_s =~ /^(4|5)/
+      raise $1 == "4" ?
+        ClientError.new(response.headers["status"]) :
+        ServerError.new(response.headers["status"])
+    end
   end
 
 end
