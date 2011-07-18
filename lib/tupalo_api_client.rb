@@ -11,11 +11,13 @@ class TupaloAPIClient
       :lang => 'en',
       :token => ''}.merge(opts)
 
+    add_query_options! :token => options[:token] unless options[:token].empty?
     self.class.endpoint "#{options[:lang]}/api/easy/v1"
+
   end
 
   def spots(opts={})
-    get(parameterize(opts), :transform => Spot)
+    get("spots/#{parameterize(opts)}", :transform => Spot)
   end
 
   def match(opts={})
@@ -24,7 +26,7 @@ class TupaloAPIClient
   private
 
   def parameterize(params)
-    "?#{URI.escape(h.map{|k,v| "#{k}=#{v}"}.join('&'))}"
+    "?#{URI.escape(params.map{|k,v| "#{k}=#{v}"}.join('&'))}"
   end
 
 end
