@@ -135,4 +135,4 @@ Michael Kohl <michi@tupalo.com> and Andreas Tiefenthaler <andy@tupalo.com>
 License
 ---
 
-tbd.
+This gem is licensed under the MIT license. See the `LICENSE` file for details.
