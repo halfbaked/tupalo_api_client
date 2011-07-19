@@ -108,6 +108,15 @@ site.
 _This token-only method is further described in the official API
 documentation._
 
+Error handling
+---
+
+In case something goes wrong, an `TupaloApiErrors::ClientError` (HTTP
+4xx) or a `TupaloApiErrors::ServerError` (HTTP 5xx) get raised.
+
+A "HTTP 412 Precondition Failed" status code is returned if you go
+over your API request limit.
+
 Known problems
 ---
 
