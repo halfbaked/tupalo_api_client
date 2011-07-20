@@ -23,7 +23,6 @@ class TupaloApiClient
 
     add_query_options! :token => options[:token] unless options[:token].empty?
     self.class.endpoint "#{options[:lang]}/api/easy/v1"
-
   end
 
   def spots(opts={})
@@ -38,7 +37,6 @@ class TupaloApiClient
     get("review_widget/#{parameterize(opts)}", :transform => ReviewWidget)
   end
 
-
   def match(opts={})
     transform = opts.has_key?(:spot_id) ? Match : Import
     get("match/#{parameterize(opts)}", :transform => transform)
@@ -52,7 +50,6 @@ class TupaloApiClient
   end
 
   def check_response_errors(response)
-
     if response.code.to_s =~ /^(4|5)/
       raise $1 == "4" ?
         ClientError.new(response.headers["status"]) :
