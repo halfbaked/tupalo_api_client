@@ -23,7 +23,6 @@ class TupaloApiClient
 
     add_query_options! :token => options[:token] unless options[:token].empty?
     self.class.endpoint "#{options[:lang]}/api/easy/v1"
-
   end
 
   def spots(opts={})
@@ -43,7 +42,6 @@ class TupaloApiClient
   rescue Errno::ETIMEDOUT
     ''
   end
-
 
   def match(opts={})
     transform = opts.has_key?(:spot_id) ? Match : Import
