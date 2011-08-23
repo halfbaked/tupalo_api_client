@@ -28,14 +28,20 @@ class TupaloApiClient
 
   def spots(opts={})
     get("spots/#{parameterize(opts)}", :transform => Spot)
+  rescue Errno::ETIMEDOUT
+    []
   end
 
   def spot_details(opts={})
     get("spot/#{parameterize(opts)}", :transform => Spot)
+  rescue Errno::ETIMEDOUT
+    []
   end
 
   def review_widget(opts={})
     get("review_widget/#{parameterize(opts)}", :transform => ReviewWidget)
+  rescue Errno::ETIMEDOUT
+    ''
   end
 
 
@@ -44,7 +50,6 @@ class TupaloApiClient
     get("match/#{parameterize(opts)}", :transform => transform)
   end
 
-
   private
 
   def parameterize(params)
@@ -52,7 +57,6 @@ class TupaloApiClient
   end
 
   def check_response_errors(response)
-
     if response.code.to_s =~ /^(4|5)/
       raise $1 == "4" ?
         ClientError.new(response.headers["status"]) :
