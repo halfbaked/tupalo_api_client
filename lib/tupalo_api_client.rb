@@ -27,20 +27,14 @@ class TupaloApiClient
 
   def spots(opts={})
     get("spots/#{parameterize(opts)}", :transform => Spot)
-  rescue Errno::ETIMEDOUT
-    []
   end
 
   def spot_details(opts={})
     get("spot/#{parameterize(opts)}", :transform => Spot)
-  rescue Errno::ETIMEDOUT
-    []
   end
 
   def review_widget(opts={})
     get("review_widget/#{parameterize(opts)}", :transform => ReviewWidget)
-  rescue Errno::ETIMEDOUT
-    ''
   end
 
   def match(opts={})
