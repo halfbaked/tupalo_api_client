@@ -19,7 +19,8 @@ class TupaloApiClient
   def initialize(opts = {})
     options = {
       :lang => 'en',
-      :token => ''}.merge(opts)
+      :token => '',
+      :timeout => 15}.merge(opts)
 
     add_query_options! :token => options[:token] unless options[:token].empty?
     self.class.endpoint "#{options[:lang]}/api/easy/v1"
