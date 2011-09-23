@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'tupalo_api_client'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.authors = ['Michael Kohl', 'Andreas Tiefenthaler']
   s.email = ['michi@tupalo.com', 'andy@tupalo.com']
   s.description = 'A convenient wrapper for the Tupalo.com API'
